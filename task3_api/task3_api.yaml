@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: Book Store API — Регистрация пользователя
+  description: |
+    REST API спецификация для регистрации нового пользователя
+    в системе Book Store (demoqa.com).
+
+    Эндпоинт выполняет:
+    - Валидацию наличия обязательных полей
+    - Проверку формата полей (длина, допустимые символы)
+    - Проверку сложности пароля
+    - Верификацию Google reCAPTCHA
+    - Проверку уникальности userName
+    - Создание учётной записи
+
+    **Заголовки запроса:**
+    - `Content-Type: application/json` (обязательный)
+  version: "1.0.0"
+  contact:
+    name: Book Store Support
+
+servers:
+  - url: https://demoqa.com
+    description: Production сервер
+
+paths:
+  /Account/v1/User:
+    post:
+      tags:
+        - Account
+      summary: Регистрация нового пользователя
+      description: |
+        Создаёт нового пользователя в системе Book Store.
+
+        **Порядок валидации на бэкенде:**
+        1. Проверка наличия обязательных полей (firstName, lastName, userName, password, captchaToken)
+        2. Проверка формата полей (длина 1–100 символов, допустимые символы)
+        3. Проверка сложности пароля (8+ символов, не-алфавитно-цифровой, заглавная, строчная, цифра, спецсимвол)
+        4. Верификация reCAPTCHA (запрос к Google reCAPTCHA API)
+        5. Проверка уникальности userName в БД
+        6. Хэширование пароля (bcrypt) и создание записи в БД
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+            example:
+              firstName: "Иван"
+              lastName: "Петров"
+              userName: "ivanpetrov"
+              password: "P@ssw0rd!"
+              captchaToken: "03AGdBq24PBhF..."
+      responses:
+        '201':
+          description: Пользователь успешно зарегистрирован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUserResponse'
+              example:
+                userID: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                username: "ivanpetrov"
+                books: []
+        '400':
+          description: |
+            Ошибка валидации входных данных. Возможные причины:
+            - Отсутствуют обязательные поля (код 1100)
+            - Некорректный формат полей (код 1101)
+            - Пароль не соответствует требованиям безопасности (код 1300)
+            - CAPTCHA не пройдена (код 1200)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missingFields:
+                  summary: Отсутствуют обязательные поля
+                  value:
+                    code: "1100"
+                    message: "Missing required fields."
+                invalidFormat:
+                  summary: Некорректный формат полей
+                  value:
+                    code: "1101"
+                    message: "Invalid field format."
+                passwordError:
+                  summary: Ошибка валидации пароля
+                  value:
+                    code: "1300"
+                    message: "Passwords must have at least one non alphanumeric character, one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z'), one special character and Password must be eight characters or longer."
+                captchaError:
+                  summary: CAPTCHA не верифицирована
+                  value:
+                    code: "1200"
+                    message: "Please verify reCaptcha to register."
+        '409':
+          description: |
+            Конфликт: пользователь с таким userName уже существует.
+            Используется 409 Conflict, т.к. запрос конфликтует с текущим состоянием ресурса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: "1204"
+                message: "User exists!"
+        '500':
+          description: |
+            Внутренняя ошибка сервера. Возможные причины:
+            - Сбой при обращении к базе данных
+            - Недоступность внешнего сервиса (Google reCAPTCHA API)
+            - Непредвиденная ошибка обработки
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: "1500"
+                message: "Internal Server Error"
+
+components:
+  schemas:
+    RegisterUserRequest:
+      type: object
+      description: Тело запроса на регистрацию пользователя
+      required:
+        - firstName
+        - lastName
+        - userName
+        - password
+        - captchaToken
+      properties:
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Имя пользователя
+          example: "Иван"
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Фамилия пользователя
+          example: "Петров"
+        userName:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Уникальное имя пользователя в системе
+          example: "ivanpetrov"
+        password:
+          type: string
+          minLength: 8
+          maxLength: 256
+          description: |
+            Пароль пользователя. Требования (порядок соответствует тексту ошибки валидации):
+            - Минимум 1 не-алфавитно-цифровой символ (non alphanumeric character — любой символ кроме букв и цифр)
+            - Минимум 1 цифра (0-9)
+            - Минимум 1 заглавная буква (A-Z)
+            - Минимум 1 строчная буква (a-z)
+            - Минимум 1 специальный символ (special character — !@#$%^&* и др.)
+            - Минимум 8 символов
+          example: "P@ssw0rd!"
+        captchaToken:
+          type: string
+          description: Токен Google reCAPTCHA v2 для подтверждения, что пользователь не робот
+          example: "03AGdBq24PBhF..."
+
+    RegisterUserResponse:
+      type: object
+      description: Ответ при успешной регистрации
+      required:
+        - userID
+        - username
+        - books
+      properties:
+        userID:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор созданного пользователя (UUID v4)
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        username:
+          type: string
+          description: |
+            Зарегистрированное имя пользователя.
+            Примечание: в запросе поле называется userName (camelCase),
+            в ответе API возвращает username (lowercase) — это особенность реализации demoqa.com.
+          example: "ivanpetrov"
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookSummary'
+          description: Список книг пользователя (пустой массив при регистрации)
+          example: []
+
+    BookSummary:
+      type: object
+      description: Краткая информация о книге
+      properties:
+        isbn:
+          type: string
+          description: ISBN книги
+        title:
+          type: string
+          description: Название книги
+
+    ErrorResponse:
+      type: object
+      description: |
+        Стандартный ответ при ошибке.
+
+        Коды ошибок:
+        | Код  | HTTP | Описание                           |
+        |------|------|------------------------------------|
+        | 1100 | 400  | Отсутствуют обязательные поля      |
+        | 1101 | 400  | Некорректный формат полей          |
+        | 1200 | 400  | CAPTCHA не пройдена                |
+        | 1300 | 400  | Пароль не соответствует требованиям|
+        | 1204 | 409  | Пользователь уже существует        |
+        | 1500 | 500  | Внутренняя ошибка сервера          |
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Код ошибки (см. таблицу выше)
+          example: "1300"
+        message:
+          type: string
+          description: Текст сообщения об ошибке на английском языке
+          example: "User exists!"

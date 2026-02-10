@@ -1,0 +1,155 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram id="usecase-diagram" name="UML Use Case Diagram">
+    <mxGraphModel dx="1400" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="uc0" />
+        <mxCell id="uc1_root" parent="uc0" />
+
+        <mxCell id="p1_title" value="&lt;b&gt;UML Use Case Diagram — Управление товарами на маркетплейсе&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;" parent="uc1_root" vertex="1">
+          <mxGeometry x="300" y="15" width="650" height="35" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_bound" value="&lt;b&gt;Маркетплейс — Личный кабинет продавца&lt;/b&gt;" style="whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;fillColor=none;strokeColor=#666666;verticalAlign=top;fontSize=14;align=center;rounded=0;strokeWidth=2;" parent="uc1_root" vertex="1">
+          <mxGeometry x="260" y="65" width="760" height="900" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_seller" value="Продавец" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=13;fontStyle=1;" parent="uc1_root" vertex="1">
+          <mxGeometry x="80" y="410" width="50" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_moder" value="Сервис&#xa;модерации" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=13;fontStyle=1;" parent="uc1_root" vertex="1">
+          <mxGeometry x="1170" y="460" width="50" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_uc1" value="UC-1: Создать&#xa;карточку товара" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="uc1_root" vertex="1">
+          <mxGeometry x="370" y="110" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_uc2" value="UC-2: Сохранить&#xa;черновик" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="uc1_root" vertex="1">
+          <mxGeometry x="370" y="260" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_uc3" value="UC-3: Опубликовать&#xa;товар" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="uc1_root" vertex="1">
+          <mxGeometry x="370" y="420" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_uc4" value="UC-4: Редактировать&#xa;товар" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="uc1_root" vertex="1">
+          <mxGeometry x="370" y="580" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_uc5" value="UC-5: Снять товар&#xa;с публикации" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="uc1_root" vertex="1">
+          <mxGeometry x="370" y="740" width="230" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_uc6" value="Валидация&#xa;обязательных полей" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" parent="uc1_root" vertex="1">
+          <mxGeometry x="730" y="370" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_uc7" value="Автоматическая&#xa;модерация контента" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" parent="uc1_root" vertex="1">
+          <mxGeometry x="730" y="490" width="210" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_e1" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_seller" target="p1_uc1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e2" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_seller" target="p1_uc2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e3" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_seller" target="p1_uc3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e4" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_seller" target="p1_uc4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e5" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_seller" target="p1_uc5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e6" style="endArrow=none;strokeColor=#333333;" parent="uc1_root" source="p1_moder" target="p1_uc7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p1_inc1" value="&lt;i&gt;&amp;laquo;include&amp;raquo;&lt;/i&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;fontSize=11;strokeColor=#999999;" parent="uc1_root" source="p1_uc3" target="p1_uc6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_inc2" value="&lt;i&gt;&amp;laquo;include&amp;raquo;&lt;/i&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;fontSize=11;strokeColor=#999999;" parent="uc1_root" source="p1_uc3" target="p1_uc7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_inc3" value="&lt;i&gt;&amp;laquo;include&amp;raquo;&lt;/i&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;fontSize=11;strokeColor=#999999;" parent="uc1_root" source="p1_uc4" target="p1_uc6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_inc4" value="&lt;i&gt;&amp;laquo;include&amp;raquo;&lt;/i&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;fontSize=11;strokeColor=#999999;" parent="uc1_root" source="p1_uc4" target="p1_uc7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="state-diagram" name="Диаграмма состояний товара">
+    <mxGraphModel dx="1300" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="st0" />
+        <mxCell id="st1_root" parent="st0" />
+
+        <mxCell id="p2_title" value="&lt;b&gt;Диаграмма состояний — Жизненный цикл товара&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;" parent="st1_root" vertex="1">
+          <mxGeometry x="350" y="15" width="500" height="35" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_init" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2D7600;strokeColor=#2D7600;aspect=fixed;" parent="st1_root" vertex="1">
+          <mxGeometry x="90" y="310" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_draft" value="&lt;b&gt;Черновик&lt;/b&gt;&lt;br&gt;(Draft)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" parent="st1_root" vertex="1">
+          <mxGeometry x="220" y="290" width="170" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_pending" value="&lt;b&gt;На модерации&lt;/b&gt;&lt;br&gt;(Pending Moderation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" parent="st1_root" vertex="1">
+          <mxGeometry x="530" y="290" width="210" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_published" value="&lt;b&gt;Опубликован&lt;/b&gt;&lt;br&gt;(Published)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" parent="st1_root" vertex="1">
+          <mxGeometry x="900" y="290" width="180" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_rejected" value="&lt;b&gt;Отклонён&lt;/b&gt;&lt;br&gt;(Rejected)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" parent="st1_root" vertex="1">
+          <mxGeometry x="540" y="530" width="180" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_unpublished" value="&lt;b&gt;Снят с публикации&lt;/b&gt;&lt;br&gt;(Unpublished)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" parent="st1_root" vertex="1">
+          <mxGeometry x="900" y="530" width="200" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_init" value="Создание" style="html=1;rounded=1;fontSize=11;fontColor=#333333;" parent="st1_root" source="p2_init" target="p2_draft" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_draft_pend" value="Публикация" style="html=1;rounded=1;fontSize=11;fontColor=#333333;" parent="st1_root" source="p2_draft" target="p2_pending" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_pend_pub" value="Модерация пройдена" style="html=1;rounded=1;fontSize=11;fontColor=#2E7D32;" parent="st1_root" source="p2_pending" target="p2_published" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_pend_rej" value="Модерация не пройдена" style="html=1;rounded=1;fontSize=11;fontColor=#b85450;" parent="st1_root" source="p2_pending" target="p2_rejected" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_pub_unpub" value="Снятие с публикации" style="html=1;rounded=1;fontSize=11;fontColor=#333333;" parent="st1_root" source="p2_published" target="p2_unpublished" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="p2_e_rej_draft" value="Редактирование" style="html=1;rounded=1;curved=1;fontSize=11;fontColor=#333333;" parent="st1_root" source="p2_rejected" target="p2_draft" edge="1">
+          <mxGeometry x="-0.2" y="-15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="p2_e_pub_pend" value="Редактирование (повторная модерация)" style="html=1;rounded=1;curved=1;fontSize=10;fontColor=#333333;" parent="st1_root" source="p2_published" target="p2_pending" edge="1">
+          <mxGeometry x="-0.2" y="-15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="p2_e_unpub_pend" value="Повторная публикация" style="html=1;rounded=1;curved=1;fontSize=11;fontColor=#333333;" parent="st1_root" source="p2_unpublished" target="p2_pending" edge="1">
+          <mxGeometry x="-0.3" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
